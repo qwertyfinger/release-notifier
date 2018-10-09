@@ -1,7 +1,7 @@
 package com.crushingdigits.releasenotifier
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.crushingdigits.releasenotifier.ui.releases.ReleasesFragment
 
 class MainActivity : AppCompatActivity() {

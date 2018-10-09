@@ -27,7 +27,7 @@ android {
   buildToolsVersion buildConfig.buildTools
 
   defaultConfig {
-    applicationId "com.crushingdigits.androidemptyboilerplate"
+    applicationId "com.crushingdigits.releasenotifier"
     minSdkVersion buildConfig.minSdk
     targetSdkVersion buildConfig.targetSdk
     versionCode 1
@@ -56,8 +56,8 @@ android {
   buildTypes {
     debug {
       signingConfig signingConfigs.debug
-      minifyEnabled false
-      useProguard false
+      minifyEnabled true
+      useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules-debug.pro'
       applicationIdSuffix ".debug"
       manifestPlaceholders = [showPerfLogs:"true"]
