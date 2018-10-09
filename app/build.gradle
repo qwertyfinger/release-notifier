@@ -1,0 +1,220 @@
+ext {
+  ci = System.getenv("CI") == "true"
+}
+
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+kapt {
+  correctErrorTypes = true
+  useBuildCache = true
+  mapDiagnosticLocations = true
+}
+
+apply plugin: 'kotlin-android-extensions'
+androidExtensions {
+  experimental = true
+}
+
+if (file("google-services.json").exists()) {
+  apply plugin: 'com.google.gms.google-services'
+  apply plugin: 'io.fabric'
+}
+
+android {
+  compileSdkVersion buildConfig.targetSdk
+  buildToolsVersion buildConfig.buildTools
+
+  defaultConfig {
+    applicationId "com.crushingdigits.androidemptyboilerplate"
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  signingConfigs {
+    debug {
+      storeFile file("../signing/app-debug.jks")
+      storePassword "qwerty"
+      keyAlias "debug"
+      keyPassword "qwerty"
+    }
+    def signingProperties = new Properties()
+    signingProperties.load(new FileInputStream(file("../signing.properties")))
+    release {
+      storeFile file("../signing/app-release.jks")
+      storePassword signingProperties['RELEASE_KEYSTORE_PWD']
+      keyAlias "appreleasekey"
+      keyPassword signingProperties['RELEASE_KEY_PWD']
+    }
+  }
+
+  buildTypes {
+    debug {
+      signingConfig signingConfigs.debug
+      minifyEnabled false
+      useProguard false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules-debug.pro'
+      applicationIdSuffix ".debug"
+      manifestPlaceholders = [showPerfLogs:"true"]
+    }
+    release {
+      signingConfig signingConfigs.release
+      shrinkResources true
+      minifyEnabled true
+      useProguard true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      manifestPlaceholders = [showPerfLogs:"false"]
+    }
+  }
+
+  flavorDimensions "type", "crashReporting"
+
+  productFlavors {
+    dev {
+      dimension "type"
+      versionNameSuffix "-dev [${getGitHash()}]"
+    }
+
+    prod {
+      dimension "type"
+    }
+
+    withoutCrashlytics {
+      dimension "crashReporting"
+      buildConfigField "boolean", "USE_CRASHLYTICS", "false"
+    }
+
+    withCrashlytics {
+      dimension "crashReporting"
+      buildConfigField "boolean", "USE_CRASHLYTICS", "true"
+    }
+  }
+
+  dataBinding {
+    enabled = true
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  dexOptions {
+    // Don't pre-dex on CI
+    preDexLibraries !ci
+  }
+
+  lintOptions {
+    // Disable lintVital. Not needed since lint is run on CI
+    checkReleaseBuilds false
+
+    disable 'GradleCompatible', 'FontValidationError'
+  }
+
+  packagingOptions {
+    // Exclude AndroidX version files
+    exclude 'META-INF/*.version'
+    // Exclude consumer proguard files
+    exclude 'META-INF/proguard/*'
+    // Exclude the Firebase/Fabric/other random properties files
+    exclude '**/*.properties'
+  }
+}
+
+dependencies {
+  compileOnly paths.javax_annotation
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation paths.mockito
+
+  androidTestImplementation paths.androidx.test.core
+  androidTestImplementation paths.androidx.test.espresso
+  // androidTestImplementation paths.androidx.test.junit - Disable for now due to compilation issue
+  androidTestImplementation paths.androidx.test.runner
+  androidTestImplementation paths.androidx.test.rules
+  androidTestImplementation paths.mockito_android
+
+  implementation paths.androidx.app_compat
+  implementation paths.androidx.browser
+  implementation paths.androidx.constraint_layout
+  implementation paths.androidx.core_ktx
+  implementation paths.androidx.recyclerview
+  implementation paths.androidx.work
+
+  implementation paths.androidx.lifecycle_extensions
+  implementation paths.androidx.lifecycle_reactivestreams
+  kapt paths.androidx.lifecycle_compiler
+
+  implementation paths.androidx.paging_runtime
+  implementation paths.androidx.paging_rxjava
+
+  implementation paths.android_job
+
+  implementation paths.anko_commons
+  implementation paths.anko_design
+  implementation paths.anko_sdk15_listeners
+
+  implementation paths.butterknife
+  kapt paths.butterknife_compiler
+
+  implementation paths.coroutines
+  implementation paths.coroutines_android
+  implementation paths.coroutines_rx
+
+  implementation (paths.crashlytics) {
+    transitive = true
+  }
+
+  implementation paths.dagger
+  kapt paths.dagger_compiler
+
+  implementation paths.epoxy
+  implementation paths.epoxy_databinding
+  implementation paths.epoxy_paging
+  kapt paths.epoxy_processor
+
+  implementation paths.eventbus
+
+  implementation paths.firebase_core
+  implementation paths.firebase_performance
+
+  implementation paths.glide
+  kapt paths.glide_compiler
+
+  implementation paths.kotlin
+
+  debugImplementation paths.leakcanary
+  releaseImplementation paths.leakcanary_no_op
+
+  implementation paths.material_design
+  implementation paths.material_dialogs
+
+  implementation paths.moshi
+  kapt paths.moshi_codegen
+
+  implementation paths.okhttp
+  implementation paths.okio
+  implementation paths.retrofit
+  implementation paths.retrofit_rxjava
+  implementation paths.rxandroid
+  implementation paths.rxjava
+  implementation paths.rxkotlin
+  debugImplementation paths.rxlint
+  implementation paths.simple_stack
+  implementation paths.threetenabp
+  implementation paths.timber
+}
+
+def getGitHash() {
+  def stdout = new ByteArrayOutputStream()
+  exec {
+    commandLine 'git', 'rev-parse', '--short', 'HEAD'
+    standardOutput = stdout
+  }
+  return stdout.toString().trim()
+}

@@ -1,0 +1,42 @@
+buildscript { 
+  apply from: 'dependencies.gradle'
+
+  repositories {
+    google()
+    jcenter()
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+  }
+
+  dependencies {
+    classpath paths.gradle.android
+    classpath paths.gradle.fabric
+    classpath paths.gradle.google_services
+    classpath paths.gradle.kotlin
+  }
+}
+
+plugins {
+  id "com.diffplug.gradle.spotless" version "3.15.0"
+}
+
+allprojects {
+  // increase maximum number of printed errors
+  gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+      options.compilerArgs << "-Xmaxerrs" << "1000"
+    }
+  }
+}
+
+subprojects {
+  apply plugin: 'com.diffplug.gradle.spotless'
+  spotless {
+    kotlin {
+      target "**/*.kt"
+      ktlint(versions.ktlint).userData(['indent_size': '2'])
+      licenseHeaderFile file('../spotless/copyright.kt')
+      endWithNewline()
+    }
+  }
+}

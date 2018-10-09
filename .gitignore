@@ -1,0 +1,20 @@
+*.iml
+.gradle
+/local.properties
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+/.idea/workspace.xml
+/.idea/libraries
+/.idea/caches
+/.idea/assetWizardSettings.xml
+/.idea/markdown-navigator
+/.idea/markdown-navigator.xml
+
+# Do not commit plain release keys
+signing/app-release.jks
+signing.properties
+
+# Do not commit Firebase config
+google-services.json
