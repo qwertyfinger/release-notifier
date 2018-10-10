@@ -22,7 +22,7 @@ test_apk() {
     # Make result dir
     mkdir -p "$TEST_DIR/$RESULTS_DIR"
 	# Pull down test results
-	gsutil -m cp -r -U "gs://test-lab-i2sf7s2m3d2y4-yisx2ta6d18wq/$RESULTS_DIR/*" "$TEST_DIR/$RESULTS_DIR"
+	gsutil -m cp -r -U "gs://test-lab-da8p772xit7ci-m2icr21r8ttyz/$RESULTS_DIR/*" "$TEST_DIR/$RESULTS_DIR"
 
 	return ${TEST_RESULT}
 }
