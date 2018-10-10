@@ -80,7 +80,7 @@ jobs:
           command: ./gradlew dependencies
       - run:
           name: Assemble and Test APKs
-          command: ./gradlew assembleDebug app:assembleDevWithCrashlyticsDebugAndroidTest
+          command: ./gradlew assembleDebug app:assembleDebugAndroidTest
       - <<: *clean_secrets
       - <<: *save_cache
       - store_artifacts:

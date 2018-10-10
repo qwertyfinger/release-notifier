@@ -65,6 +65,7 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules-debug.pro'
       testProguardFile 'proguard-rules-test.pro'
       applicationIdSuffix ".debug"
+      versionNameSuffix "-dev [${getGitHash()}]"
       manifestPlaceholders = [showPerfLogs:"true"]
     }
     release {
@@ -74,29 +75,6 @@ android {
       useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       manifestPlaceholders = [showPerfLogs:"false"]
-    }
-  }
-
-  flavorDimensions "type", "crashReporting"
-
-  productFlavors {
-    dev {
-      dimension "type"
-      versionNameSuffix "-dev [${getGitHash()}]"
-    }
-
-    prod {
-      dimension "type"
-    }
-
-    withoutCrashlytics {
-      dimension "crashReporting"
-      buildConfigField "boolean", "USE_CRASHLYTICS", "false"
-    }
-
-    withCrashlytics {
-      dimension "crashReporting"
-      buildConfigField "boolean", "USE_CRASHLYTICS", "true"
     }
   }
 
