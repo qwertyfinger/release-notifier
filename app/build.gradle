@@ -52,7 +52,7 @@ android {
     release {
       storeFile file("../signing/app-release.jks")
       storePassword keystoreProperties['keystorePassword']
-      keyAlias "appreleasekey"
+      keyAlias "releasenotifier"
       keyPassword keystoreProperties['keyPassword']
     }
   }
