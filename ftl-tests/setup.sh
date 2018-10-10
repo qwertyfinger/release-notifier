@@ -6,13 +6,13 @@ if [ "$GCLOUD_SERVICE_KEY" = "" ]; then
 fi
 
 # Export to secrets file
-echo $GCLOUD_SERVICE_KEY | base64 -di > client-secret.json
+echo $GCLOUD_SERVICE_KEY | base64 -di > gcloud-service-key.json
 
 # Set project ID
-gcloud config set project android-devrel-ci
+gcloud config set project $GOOGLE_PROJECT_ID
 
 # Auth account
-gcloud auth activate-service-account tivi-chris-banes@android-devrel-ci.iam.gserviceaccount.com --key-file client-secret.json
+gcloud auth activate-service-account andrii-chubko-ftl@release-notifier.iam.gserviceaccount.com --key-file gcloud-service-key.json
 
 # Delete secret
-rm client-secret.json
+rm gcloud-service-key.json

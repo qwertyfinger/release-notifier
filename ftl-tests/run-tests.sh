@@ -11,8 +11,9 @@ test_apk() {
 	    --test $3 \
 	    --device model=Nexus6P,version=27,locale=en_US,orientation=portrait \
 	    --timeout 30m \
-	    --results-bucket cloud-test-android-devrel-ci \
 	    --results-dir=${RESULTS_DIR} \
+	    --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec \
+	    --directories-to-pull=/sdcard/tmp \
 	    --no-record-video \
 	    --no-performance-metrics
 
@@ -21,7 +22,7 @@ test_apk() {
     # Make result dir
     mkdir -p "$TEST_DIR/$RESULTS_DIR"
 	# Pull down test results
-	gsutil -m cp -r -U "gs://cloud-test-android-devrel-ci/$RESULTS_DIR/*" "$TEST_DIR/$RESULTS_DIR"
+	gsutil -m cp -r -U "gs://test-lab-i2sf7s2m3d2y4-yisx2ta6d18wq/$RESULTS_DIR/*" "$TEST_DIR/$RESULTS_DIR"
 
 	return ${TEST_RESULT}
 }
