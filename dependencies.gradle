@@ -55,7 +55,7 @@ ext.versions = [
     'leakcanary'         : '1.6.1',
     'material_design'    : '1.0.0',
     'material_dialogs'   : '2.0.0-beta3',
-    'mockito'            : '2.23.0',
+    'mockito'            : '2.22.0', // Pinning this due to https://github.com/mockito/mockito/issues/1511
     'moshi'              : '1.7.0',
     'okhttp'             : '3.11.0',
     'okio'               : '2.1.0',

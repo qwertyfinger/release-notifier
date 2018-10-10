@@ -43,13 +43,17 @@ android {
       keyAlias "debug"
       keyPassword "qwerty"
     }
-    def signingProperties = new Properties()
-    signingProperties.load(new FileInputStream(file("../signing.properties")))
+    def keystoreProperties = new Properties()
+    if (ci) {
+      keystoreProperties = project.properties
+    } else {
+      keystoreProperties.load(new FileInputStream(file("../signing/keystore.properties")))
+    }
     release {
       storeFile file("../signing/app-release.jks")
-      storePassword signingProperties['RELEASE_KEYSTORE_PWD']
+      storePassword keystoreProperties['keystorePassword']
       keyAlias "appreleasekey"
-      keyPassword signingProperties['RELEASE_KEY_PWD']
+      keyPassword keystoreProperties['keyPassword']
     }
   }
 
@@ -59,6 +63,7 @@ android {
       minifyEnabled true
       useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules-debug.pro'
+      testProguardFile 'proguard-rules-test.pro'
       applicationIdSuffix ".debug"
       manifestPlaceholders = [showPerfLogs:"true"]
     }
@@ -134,7 +139,9 @@ dependencies {
 
   androidTestImplementation paths.androidx.test.core
   androidTestImplementation paths.androidx.test.espresso
-  // androidTestImplementation paths.androidx.test.junit - Disable for now due to compilation issue
+  androidTestImplementation (paths.androidx.test.junit) {
+    exclude group: "org.junit"
+  }
   androidTestImplementation paths.androidx.test.runner
   androidTestImplementation paths.androidx.test.rules
   androidTestImplementation paths.mockito_android
