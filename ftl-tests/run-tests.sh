@@ -10,7 +10,7 @@ test_apk() {
 	    --app $2 \
 	    --test $3 \
 	    --device model=Nexus6P,version=27,locale=en_US,orientation=portrait \
-	    --timeout 30m \
+	    --timeout 20m \
 	    --results-dir=${RESULTS_DIR} \
 	    --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec \
 	    --directories-to-pull=/sdcard/tmp \
