@@ -12,9 +12,13 @@
 /.idea/markdown-navigator
 /.idea/markdown-navigator.xml
 
+# Do not commit APK or App Bundle files
+*.apk
+*.aab
+
 # Do not commit plain release keys
 signing/app-release.jks
-signing.properties
+signing/keystore.properties
 
 # Do not commit Firebase config
 google-services.json
