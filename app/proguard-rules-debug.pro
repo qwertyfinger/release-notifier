@@ -2,7 +2,7 @@
 # https://www.guardsquare.com/en/products/proguard/manual/usage
 
 # Print final merged ProGuard configurations in the following file.
--printconfiguration "build/outputs/mapping/configuration.txt"
+-printconfiguration build/outputs/mapping/configuration.txt
 
 # Disable warnings, obfuscation and optimizations in debug builds.
 -ignorewarnings

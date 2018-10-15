@@ -2,13 +2,10 @@
 # https://www.guardsquare.com/en/products/proguard/manual/usage
 
 # Print final merged ProGuard configurations in the following file.
--printconfiguration "build/outputs/mapping/configuration.txt"
+-printconfiguration build/outputs/mapping/configuration.txt
 
 # Disable optimizations that are known to cause problems.
 -optimizations !code/allocation/variable,!method/removal/parameter
-
-# Disable optimizations entirely as it causes build to never finish in some projects with AGP 3.2.0.
--dontoptimize
 
 # Repackage all classes to save some space.
 -repackageclasses ''
@@ -26,7 +23,6 @@
 
 # *** EVENTBUS ***
 # Keep methods subscribed for the EventBus callbacks.
--keepattributes *Annotation*
 -keepclassmembers class ** {
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
@@ -66,7 +62,7 @@
 
 # *** RETROFIT ***
 # Retrofit does reflection on generic parameters and InnerClass is required to use Signature.
--keepattributes Signature, InnerClasses, Exceptions
+-keepattributes Exceptions
 
 # Retain service method parameters when optimizing.
 -keepclassmembers,allowshrinking,allowobfuscation interface * {

@@ -1,5 +1,5 @@
 ext {
-  ci = System.getenv("CI") == "true"
+  ci = System.getenv('CI') == 'true'
 }
 
 apply plugin: 'com.android.application'
@@ -17,7 +17,7 @@ androidExtensions {
   experimental = true
 }
 
-if (file("google-services.json").exists()) {
+if (file('google-services.json').exists()) {
   apply plugin: 'com.google.gms.google-services'
   apply plugin: 'io.fabric'
 }
@@ -27,32 +27,32 @@ android {
   buildToolsVersion buildConfig.buildTools
 
   defaultConfig {
-    applicationId "com.crushingdigits.releasenotifier"
+    applicationId 'com.crushingdigits.releasenotifier'
     minSdkVersion buildConfig.minSdk
     targetSdkVersion buildConfig.targetSdk
     versionCode 1
-    versionName "1.0"
+    versionName '1.0'
 
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
   }
 
   signingConfigs {
     debug {
-      storeFile file("../signing/app-debug.jks")
-      storePassword "qwerty"
-      keyAlias "debug"
-      keyPassword "qwerty"
+      storeFile file('../signing/app-debug.jks')
+      storePassword 'qwerty'
+      keyAlias 'debug'
+      keyPassword 'qwerty'
     }
     def keystoreProperties = new Properties()
     if (ci) {
       keystoreProperties = project.properties
     } else {
-      keystoreProperties.load(new FileInputStream(file("../signing/keystore.properties")))
+      keystoreProperties.load(new FileInputStream(file('../signing/keystore.properties')))
     }
     release {
-      storeFile file("../signing/app-release.jks")
+      storeFile file('../signing/app-release.jks')
       storePassword keystoreProperties['keystorePassword']
-      keyAlias "releasenotifier"
+      keyAlias 'releasenotifier'
       keyPassword keystoreProperties['keyPassword']
     }
   }
@@ -62,11 +62,12 @@ android {
       signingConfig signingConfigs.debug
       minifyEnabled true
       useProguard true
-      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules-debug.pro'
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+          'proguard-rules-debug.pro'
       testProguardFile 'proguard-rules-test.pro'
-      applicationIdSuffix ".debug"
+      applicationIdSuffix '.debug'
       versionNameSuffix "-dev [${getGitHash()}]"
-      manifestPlaceholders = [showPerfLogs:"true"]
+      manifestPlaceholders = [showPerfLogs:'true']
     }
     release {
       signingConfig signingConfigs.release
@@ -74,7 +75,7 @@ android {
       minifyEnabled true
       useProguard true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-      manifestPlaceholders = [showPerfLogs:"false"]
+      manifestPlaceholders = [showPerfLogs:'false']
     }
   }
 
@@ -110,16 +111,12 @@ android {
 }
 
 dependencies {
-  compileOnly paths.javax_annotation
-
   testImplementation 'junit:junit:4.12'
   testImplementation paths.mockito
 
   androidTestImplementation paths.androidx.test.core
   androidTestImplementation paths.androidx.test.espresso
-  androidTestImplementation (paths.androidx.test.junit) {
-    exclude group: "org.junit"
-  }
+  androidTestImplementation paths.androidx.test.junit
   androidTestImplementation paths.androidx.test.runner
   androidTestImplementation paths.androidx.test.rules
   androidTestImplementation paths.mockito_android
