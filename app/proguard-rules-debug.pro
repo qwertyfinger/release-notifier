@@ -12,6 +12,9 @@
 # Retain some debug information about local variables (only needed line in debug build type).
 -keepattributes LocalVariableTable, LocalVariableTypeTable
 
+# Fixes issue with FTL, see https://stackoverflow.com/questions/52759473/firebase-test-lab-fails-when-using-proguard-dagger/52958092#52958092
+-keep class javax.inject.** { *; }
+
 # *** LEAKCANARY ***
 -keepclassmembers class org.eclipse.mat.** { *; }
 -keepclassmembers class com.squareup.leakcanary.** { *; }
@@ -24,7 +27,6 @@
 
 # *** EVENTBUS ***
 # Keep methods subscribed for the EventBus callbacks.
--keepattributes *Annotation*
 -keepclassmembers class ** {
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
