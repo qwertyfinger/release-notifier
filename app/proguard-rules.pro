@@ -141,15 +141,20 @@
 # Kotlin classes with @Parcelize
 -dontwarn com.example.model.**
 
-# Coroutines
--keepclassmembernames class kotlinx.** {
-    volatile <fields>;
-}
-
 # Kotlin Reflect internal impl
 -keep public class kotlin.reflect.jvm.internal.impl.builtins.* { public *; }
 
 # Strip out Kotlin runtime null checks
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
   static void checkParameterIsNotNull(java.lang.Object, java.lang.String);
+}
+
+# *** COROUTINES ***
+# ServiceLoader support
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+
+# Most of volatile fields are updated with AFU and should not be mangled
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
 }

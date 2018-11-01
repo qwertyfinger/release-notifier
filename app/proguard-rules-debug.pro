@@ -116,10 +116,16 @@
 -keep class * implements com.airbnb.mvrx.MvRxState { *; }
 
 # *** KOTLIN ***
-# Coroutines
+# Kotlin Reflect internal impl
+-keep public class kotlin.reflect.jvm.internal.impl.builtins.* { public *; }
+
+
+# *** COROUTINES ***
+# ServiceLoader support
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+
+# Most of volatile fields are updated with AFU and should not be mangled
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
 }
-
-# Kotlin Reflect internal impl
--keep public class kotlin.reflect.jvm.internal.impl.builtins.* { public *; }
