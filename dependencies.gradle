@@ -53,6 +53,7 @@ ext.versions = [
     'material_design'    : '1.0.0',
     'material_dialogs'   : '2.0.0-beta4',
     'mockito'            : '2.22.0', // Pinning this due to https://github.com/mockito/mockito/issues/1511
+    'mockito_kotlin'     : '2.0.0',
     'moshi'              : '1.7.0',
     'mvrx'               : '0.6.0',
     'okhttp'             : '3.11.0',
@@ -123,6 +124,7 @@ ext.paths = [
     'material_dialogs'    : "com.afollestad.material-dialogs:core:${versions.material_dialogs}",
     'mockito'             : "org.mockito:mockito-core:${versions.mockito}",
     'mockito_android'     : "org.mockito:mockito-android:${versions.mockito}",
+    'mockito_kotlin'      : "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}",
     'moshi'               : "com.squareup.moshi:moshi:${versions.moshi}",
     'moshi_codegen'       : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}",
     'mvrx'                : "com.airbnb.android:mvrx:${versions.mvrx}",
