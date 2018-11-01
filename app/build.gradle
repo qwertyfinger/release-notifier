@@ -88,6 +88,12 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+    }
+  }
+
   dexOptions {
     // Don't pre-dex on CI
     preDexLibraries !ci
@@ -118,6 +124,8 @@ android {
 dependencies {
   testImplementation 'junit:junit:4.12'
   testImplementation paths.mockito
+  testImplementation paths.mockito_kotlin
+  testImplementation paths.robolectric
 
   androidTestImplementation paths.androidx.test.core
   androidTestImplementation paths.androidx.test.espresso
