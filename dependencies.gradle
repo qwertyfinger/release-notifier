@@ -54,6 +54,7 @@ ext.versions = [
     'material_dialogs'   : '2.0.0-beta4',
     'mockito'            : '2.22.0', // Pinning this due to https://github.com/mockito/mockito/issues/1511
     'moshi'              : '1.7.0',
+    'mvrx'               : '0.6.0',
     'okhttp'             : '3.11.0',
     'okio'               : '2.0.0', // Pinning this due to https://github.com/square/okio/issues/516
     'retrofit'           : '2.4.0',
@@ -123,6 +124,7 @@ ext.paths = [
     'mockito_android'     : "org.mockito:mockito-android:${versions.mockito}",
     'moshi'               : "com.squareup.moshi:moshi:${versions.moshi}",
     'moshi_codegen'       : "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}",
+    'mvrx'                : "com.airbnb.android:mvrx:${versions.mvrx}",
     'okhttp'              : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
     'okio'                : "com.squareup.okio:okio:${versions.okio}",
     'retrofit'            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",

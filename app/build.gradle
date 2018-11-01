@@ -181,6 +181,7 @@ dependencies {
   implementation paths.moshi
   kapt paths.moshi_codegen
 
+  implementation paths.mvrx
   implementation paths.okhttp
   implementation paths.okio
   implementation paths.retrofit
