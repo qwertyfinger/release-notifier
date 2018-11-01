@@ -108,6 +108,11 @@ android {
     // Exclude the Firebase/Fabric/other random properties files
     exclude '**/*.properties'
   }
+
+  // Temporary workaround, see https://issuetracker.google.com/115738511
+  configurations.all {
+    resolutionStrategy.force "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02"
+  }
 }
 
 dependencies {
@@ -120,10 +125,6 @@ dependencies {
   androidTestImplementation paths.androidx.test.runner
   androidTestImplementation paths.androidx.test.rules
   androidTestImplementation paths.mockito_android
-
-  // Temporary workaround, see https://issuetracker.google.com/115738511
-  kapt 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
-  annotationProcessor 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
 
   implementation paths.androidx.app_compat
   implementation paths.androidx.browser

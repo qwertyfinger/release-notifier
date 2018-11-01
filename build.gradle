@@ -12,7 +12,9 @@ buildscript {
     classpath paths.gradle.fabric
     classpath paths.gradle.google_services
     classpath paths.gradle.kotlin
-    classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02' // Temporary workaround, see https://issuetracker.google.com/115738511
+
+    // Temporary workaround, see https://issuetracker.google.com/115738511
+    classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
   }
 }
 
