@@ -121,6 +121,10 @@ dependencies {
   androidTestImplementation paths.androidx.test.rules
   androidTestImplementation paths.mockito_android
 
+  // Temporary workaround, see https://issuetracker.google.com/115738511
+  kapt 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
+  annotationProcessor 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
+
   implementation paths.androidx.app_compat
   implementation paths.androidx.browser
   implementation paths.androidx.constraint_layout
@@ -140,9 +144,6 @@ dependencies {
   implementation paths.anko_commons
   implementation paths.anko_design
   implementation paths.anko_sdk15_listeners
-
-  implementation paths.butterknife
-  kapt paths.butterknife_compiler
 
   implementation paths.coroutines
   implementation paths.coroutines_android

@@ -2,7 +2,6 @@ allprojects {
   repositories {
     google()
     jcenter()
-    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
     maven { url "https://jitpack.io" } // Used by simple-stack
   }
 }
@@ -24,43 +23,42 @@ ext.versions = [
         'paging'           : '2.0.0',
         'recyclerview'     : '1.0.0',
         test : [
-            'core'         : '1.0.0-beta02',
-            'espresso'     : '3.1.0-beta02',
-            'junit'        : '1.0.0-beta02',
-            'runner'       : '1.1.0-beta02',
-            'rules'        : '1.1.0-beta02',
+            'core'         : '1.0.0',
+            'espresso'     : '3.1.0',
+            'junit'        : '1.0.0',
+            'runner'       : '1.1.0',
+            'rules'        : '1.1.0',
         ],
         'work'             : '1.0.0-alpha10'
     ],
     'android_job'        : '1.2.6',
     'anko'               : '0.10.7',
-    'butterknife'        : '8.8.1',
-    'coroutines'         : '0.30.2',
+    'coroutines'         : '1.0.0',
     'crashlytics'        : '2.9.5@aar',
-    'dagger'             : '2.16', // Pinning this due to https://issuetracker.google.com/115738511
+    'dagger'             : '2.19',
     'epoxy'              : '3.0.0-rc1',
     'eventbus'           : '3.1.1',
     'firebase_core'      : '16.0.4',
-    'firebase_perf'      : '16.1.2',
+    'firebase_perf'      : '16.2.0',
     'glide'              : '4.8.0',
     gradle : [
         'android'        : '3.2.1',
         'fabric'         : '1.26.1',
-        'google_services': '4.1.0',
+        'google_services': '4.2.0',
     ],
     'javax_annotation'   : '1.0',
-    'kotlin'             : '1.3.0-rc-146',
+    'kotlin'             : '1.3.0',
     'ktlint'             : '0.29.0',
-    'leakcanary'         : '1.6.1',
+    'leakcanary'         : '1.6.2',
     'material_design'    : '1.0.0',
-    'material_dialogs'   : '2.0.0-beta3',
+    'material_dialogs'   : '2.0.0-beta4',
     'mockito'            : '2.22.0', // Pinning this due to https://github.com/mockito/mockito/issues/1511
     'moshi'              : '1.7.0',
     'okhttp'             : '3.11.0',
     'okio'               : '2.0.0', // Pinning this due to https://github.com/square/okio/issues/516
     'retrofit'           : '2.4.0',
     'rxandroid'          : '2.1.0',
-    'rxjava'             : '2.2.2',
+    'rxjava'             : '2.2.3',
     'rxkotlin'           : '2.3.0',
     'rxlint'             : '1.7.0',
     'simple_stack'       : '1.13.0',
@@ -94,8 +92,6 @@ ext.paths = [
     'anko_commons'        : "org.jetbrains.anko:anko-commons:${versions.anko}",
     'anko_design'         : "org.jetbrains.anko:anko-design:${versions.anko}",
     'anko_sdk15_listeners': "org.jetbrains.anko:anko-sdk15-listeners:${versions.anko}",
-    'butterknife'         : "com.jakewharton:butterknife:${versions.butterknife}",
-    'butterknife_compiler': "com.jakewharton:butterknife-compiler:${versions.butterknife}",
     'coroutines'          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
     'coroutines_android'  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
     'coroutines_rx'       : "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${versions.coroutines}",

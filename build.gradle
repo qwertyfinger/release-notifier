@@ -5,7 +5,6 @@ buildscript {
     google()
     jcenter()
     maven { url 'https://maven.fabric.io/public' }
-    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
   }
 
   dependencies {
@@ -13,11 +12,12 @@ buildscript {
     classpath paths.gradle.fabric
     classpath paths.gradle.google_services
     classpath paths.gradle.kotlin
+    classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02' // Temporary workaround, see https://issuetracker.google.com/115738511
   }
 }
 
 plugins {
-  id "com.diffplug.gradle.spotless" version "3.15.0"
+  id "com.diffplug.gradle.spotless" version "3.16.0"
   id 'com.github.ben-manes.versions' version "0.20.0"
 }
 
