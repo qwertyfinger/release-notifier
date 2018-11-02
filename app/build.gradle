@@ -1,3 +1,6 @@
+import buildsrc.BuildConfig
+import buildsrc.Libraries
+
 ext {
   ci = System.getenv('CI') == 'true'
 }
@@ -23,13 +26,13 @@ if (file('google-services.json').exists()) {
 }
 
 android {
-  compileSdkVersion buildConfig.targetSdk
-  buildToolsVersion buildConfig.buildTools
+  compileSdkVersion BuildConfig.targetSdk
+  buildToolsVersion BuildConfig.buildTools
 
   defaultConfig {
     applicationId 'com.crushingdigits.releasenotifier'
-    minSdkVersion buildConfig.minSdk
-    targetSdkVersion buildConfig.targetSdk
+    minSdkVersion BuildConfig.minSdk
+    targetSdkVersion BuildConfig.targetSdk
     versionCode 1
     versionName '1.0'
 
@@ -115,92 +118,95 @@ android {
     exclude '**/*.properties'
   }
 
-  // Temporary workaround, see https://issuetracker.google.com/115738511
+  /*
+   * Temporary workaround for using latest Dagger versions with Jetifier.
+   * See https://issuetracker.google.com/115738511
+   */
   configurations.all {
-    resolutionStrategy.force "com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02"
+    resolutionStrategy.force 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
   }
 }
 
 dependencies {
   testImplementation 'junit:junit:4.12'
-  testImplementation paths.mockito
-  testImplementation paths.mockito_kotlin
-  testImplementation paths.robolectric
+  testImplementation Libraries.mockito
+  testImplementation Libraries.mockito_kotlin
+  testImplementation Libraries.robolectric
 
-  androidTestImplementation paths.androidx.test.core
-  androidTestImplementation paths.androidx.test.espresso
-  androidTestImplementation paths.androidx.test.junit
-  androidTestImplementation paths.androidx.test.runner
-  androidTestImplementation paths.androidx.test.rules
-  androidTestImplementation paths.mockito_android
+  androidTestImplementation Libraries.AndroidX.Test.core
+  androidTestImplementation Libraries.AndroidX.Test.espresso
+  androidTestImplementation Libraries.AndroidX.Test.junit
+  androidTestImplementation Libraries.AndroidX.Test.runner
+  androidTestImplementation Libraries.AndroidX.Test.rules
+  androidTestImplementation Libraries.mockito_android
 
-  implementation paths.androidx.app_compat
-  implementation paths.androidx.browser
-  implementation paths.androidx.constraint_layout
-  implementation paths.androidx.core_ktx
-  implementation paths.androidx.recyclerview
-  implementation paths.androidx.work
+  implementation Libraries.AndroidX.appcompat
+  implementation Libraries.AndroidX.browser
+  implementation Libraries.AndroidX.constraint_layout
+  implementation Libraries.AndroidX.core_ktx
+  implementation Libraries.AndroidX.recyclerview
+  implementation Libraries.AndroidX.work
 
-  implementation paths.androidx.lifecycle_extensions
-  implementation paths.androidx.lifecycle_reactivestreams
-  kapt paths.androidx.lifecycle_compiler
+  implementation Libraries.AndroidX.lifecycle_extensions
+  implementation Libraries.AndroidX.lifecycle_reactivestreams
+  kapt Libraries.AndroidX.lifecycle_compiler
 
-  implementation paths.androidx.paging_runtime
-  implementation paths.androidx.paging_rxjava
+  implementation Libraries.AndroidX.paging_runtime
+  implementation Libraries.AndroidX.paging_rxjava
 
-  implementation paths.android_job
+  implementation Libraries.android_job
 
-  implementation paths.anko_commons
-  implementation paths.anko_design
-  implementation paths.anko_sdk15_listeners
+  implementation Libraries.anko_commons
+  implementation Libraries.anko_design
+  implementation Libraries.anko_sdk15_listeners
 
-  implementation paths.coroutines
-  implementation paths.coroutines_android
-  implementation paths.coroutines_rx
+  implementation Libraries.coroutines
+  implementation Libraries.coroutines_android
+  implementation Libraries.coroutines_rx
 
-  implementation (paths.crashlytics) {
+  implementation (Libraries.crashlytics) {
     transitive = true
   }
 
-  implementation paths.dagger
-  kapt paths.dagger_compiler
+  implementation Libraries.dagger
+  kapt Libraries.dagger_compiler
 
-  implementation paths.epoxy
-  implementation paths.epoxy_databinding
-  implementation paths.epoxy_paging
-  kapt paths.epoxy_processor
+  implementation Libraries.epoxy
+  implementation Libraries.epoxy_databinding
+  implementation Libraries.epoxy_paging
+  kapt Libraries.epoxy_processor
 
-  implementation paths.eventbus
+  implementation Libraries.eventbus
 
-  implementation paths.firebase_core
-  implementation paths.firebase_performance
+  implementation Libraries.firebase_core
+  implementation Libraries.firebase_perf
 
-  implementation paths.glide
-  kapt paths.glide_compiler
+  implementation Libraries.glide
+  kapt Libraries.glide_compiler
 
-  implementation paths.kotlin
+  implementation Libraries.kotlin
 
-  debugImplementation paths.leakcanary
-  releaseImplementation paths.leakcanary_no_op
+  debugImplementation Libraries.leakcanary
+  releaseImplementation Libraries.leakcanary_no_op
 
-  implementation paths.material_design
-  implementation paths.material_dialogs
+  implementation Libraries.material_design
+  implementation Libraries.material_dialogs
 
-  implementation paths.moshi
-  kapt paths.moshi_codegen
+  implementation Libraries.moshi
+  kapt Libraries.moshi_codegen
 
-  implementation paths.mvrx
-  implementation paths.okhttp
-  implementation paths.okio
-  implementation paths.retrofit
-  implementation paths.retrofit_rxjava
-  implementation paths.rxandroid
-  implementation paths.rxjava
-  implementation paths.rxkotlin
-  debugImplementation paths.rxlint
-  implementation paths.simple_stack
-  implementation paths.threetenabp
-  implementation paths.timber
+  implementation Libraries.mvrx
+  implementation Libraries.okhttp
+  implementation Libraries.okio
+  implementation Libraries.retrofit
+  implementation Libraries.retrofit_rxjava
+  implementation Libraries.rxandroid
+  implementation Libraries.rxjava
+  implementation Libraries.rxkotlin
+  debugImplementation Libraries.rxlint
+  implementation Libraries.simple_stack
+  implementation Libraries.threetenabp
+  implementation Libraries.timber
 }
 
 def getGitHash() {

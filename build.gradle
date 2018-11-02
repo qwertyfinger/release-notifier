@@ -1,6 +1,7 @@
-buildscript { 
-  apply from: 'dependencies.gradle'
+import buildsrc.Libraries
+import buildsrc.Versions
 
+buildscript {
   repositories {
     google()
     jcenter()
@@ -8,26 +9,35 @@ buildscript {
   }
 
   dependencies {
-    classpath paths.gradle.android
-    classpath paths.gradle.fabric
-    classpath paths.gradle.google_services
-    classpath paths.gradle.kotlin
+    classpath Libraries.Gradle.android
+    classpath Libraries.Gradle.fabric
+    classpath Libraries.Gradle.google_services
+    classpath Libraries.Gradle.kotlin
 
-    // Temporary workaround, see https://issuetracker.google.com/115738511
+    /*
+     * Temporary workaround for using latest Dagger versions with Jetifier.
+     * See https://issuetracker.google.com/115738511
+     */
     classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
   }
 }
 
 plugins {
-  id "com.diffplug.gradle.spotless" version "3.16.0"
-  id 'com.github.ben-manes.versions' version "0.20.0"
+  id 'com.diffplug.gradle.spotless' version '3.16.0'
+  id 'com.github.ben-manes.versions' version '0.20.0'
 }
 
 allprojects {
-  // increase maximum number of printed errors
+  repositories {
+    google()
+    jcenter()
+    maven { url 'https://jitpack.io' } // Used by simple-stack
+  }
+
+  // Increase maximum number of printed errors
   gradle.projectsEvaluated {
     tasks.withType(JavaCompile) {
-      options.compilerArgs << "-Xmaxerrs" << "1000"
+      options.compilerArgs << '-Xmaxerrs' << '1000'
     }
   }
 }
@@ -36,8 +46,8 @@ subprojects {
   apply plugin: 'com.diffplug.gradle.spotless'
   spotless {
     kotlin {
-      target "**/*.kt"
-      ktlint(versions.ktlint).userData(['indent_size': '2'])
+      target '**/*.kt'
+      ktlint(Versions.ktlint).userData(['indent_size': '2'])
       licenseHeaderFile file('../spotless/copyright.kt')
       endWithNewline()
     }
