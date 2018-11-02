@@ -1,4 +1,5 @@
-import buildsrc.*
+import buildsrc.Libraries
+import buildsrc.Versions
 
 buildscript {
   repositories {
