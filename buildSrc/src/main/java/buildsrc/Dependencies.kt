@@ -2,6 +2,7 @@
 
 package buildsrc
 
+@Suppress("unused")
 object BuildConfig {
   val buildTools = "28.0.3"
   val minSdk = 17
@@ -47,7 +48,7 @@ object Versions {
   val firebase_perf = "16.2.0"
   val glide = "4.8.0"
   val kotlin = "1.3.0"
-  val ktlint = "0.29.0"
+  @Suppress("unused") val ktlint = "0.29.0"
   val leakcanary = "1.6.2"
   val material_design = "1.0.0"
   val material_dialogs = "2.0.0-beta4"
@@ -68,6 +69,7 @@ object Versions {
   val timber = "4.7.1"
 }
 
+@Suppress("unused")
 object Libraries {
 
   object AndroidX {
