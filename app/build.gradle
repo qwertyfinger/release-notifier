@@ -118,7 +118,10 @@ android {
     exclude '**/*.properties'
   }
 
-  // Temporary workaround, see https://issuetracker.google.com/115738511
+  /*
+   * Temporary workaround for using latest Dagger versions with Jetifier.
+   * See https://issuetracker.google.com/115738511
+   */
   configurations.all {
     resolutionStrategy.force 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
   }
