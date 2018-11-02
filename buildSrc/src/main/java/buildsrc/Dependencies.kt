@@ -63,7 +63,7 @@ object Versions {
   val rxandroid = "2.1.0"
   val rxjava = "2.2.3"
   val rxkotlin = "2.3.0"
-  val rxlint = "1.7.0"
+  val rxlint = "1.7.1"
   val simple_stack = "1.13.0"
   val threetenabp = "1.1.1"
   val timber = "4.7.1"
