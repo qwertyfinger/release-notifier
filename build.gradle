@@ -19,21 +19,21 @@ buildscript {
 }
 
 plugins {
-  id "com.diffplug.gradle.spotless" version "3.16.0"
-  id 'com.github.ben-manes.versions' version "0.20.0"
+  id 'com.diffplug.gradle.spotless' version '3.16.0'
+  id 'com.github.ben-manes.versions' version '0.20.0'
 }
 
 allprojects {
   repositories {
     google()
     jcenter()
-    maven { url "https://jitpack.io" } // Used by simple-stack
+    maven { url 'https://jitpack.io' } // Used by simple-stack
   }
 
   // increase maximum number of printed errors
   gradle.projectsEvaluated {
     tasks.withType(JavaCompile) {
-      options.compilerArgs << "-Xmaxerrs" << "1000"
+      options.compilerArgs << '-Xmaxerrs' << '1000'
     }
   }
 }
@@ -42,7 +42,7 @@ subprojects {
   apply plugin: 'com.diffplug.gradle.spotless'
   spotless {
     kotlin {
-      target "**/*.kt"
+      target '**/*.kt'
       ktlint(Versions.ktlint).userData(['indent_size': '2'])
       licenseHeaderFile file('../spotless/copyright.kt')
       endWithNewline()
