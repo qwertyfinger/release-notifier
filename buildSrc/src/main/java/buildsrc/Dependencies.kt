@@ -1,6 +1,6 @@
 @file:Suppress("MayBeConstant")
 
-package base
+package buildsrc
 
 object BuildConfig {
   val buildTools = "28.0.3"

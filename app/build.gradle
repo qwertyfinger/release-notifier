@@ -1,4 +1,4 @@
-import base.*
+import buildsrc.*
 
 ext {
   ci = System.getenv('CI') == 'true'
