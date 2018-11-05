@@ -34,10 +34,17 @@ allprojects {
     maven { url 'https://jitpack.io' } // Used by simple-stack
   }
 
-  // Increase maximum number of printed errors
-  gradle.projectsEvaluated {
-    tasks.withType(JavaCompile) {
-      options.compilerArgs << '-Xmaxerrs' << '1000'
+  afterEvaluate {
+    if (project.plugins.hasPlugin("kotlin-kapt")) {
+      kapt {
+        useBuildCache = true
+        correctErrorTypes = true
+        mapDiagnosticLocations = true
+        // Increase maximum number of printed errors
+        javacOptions {
+          option("-Xmaxerrs", 500)
+        }
+      }
     }
   }
 }
