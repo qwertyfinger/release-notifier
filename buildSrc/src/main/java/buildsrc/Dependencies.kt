@@ -80,10 +80,8 @@ object Libraries {
     val core_ktx = "androidx.core:core-ktx:${Versions.AndroidX.core_ktx}"
     val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.AndroidX.lifecycle}"
     val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.lifecycle}"
-    val lifecycle_reactivestreams = "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.AndroidX.lifecycle}"
     val lifecycle_test = "androidx.arch.core:core-testing:${Versions.AndroidX.lifecycle}"
     val paging_runtime = "androidx.paging:paging-runtime-ktx:${Versions.AndroidX.paging}"
-    val paging_rxjava = "androidx.paging:paging-rxjava2-ktx:${Versions.AndroidX.paging}"
     val recyclerview = "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerview}"
 
     object Test {
@@ -142,7 +140,6 @@ object Libraries {
   val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
   val retrofit_coroutines = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.retrofit_coroutines}"
   val retrofit_moshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
-  val retrofit_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit}"
   val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
   val rxandroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
   val rxjava = "io.reactivex.rxjava2:rxjava:${Versions.rxjava}"

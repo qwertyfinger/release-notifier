@@ -147,11 +147,9 @@ dependencies {
   implementation Libraries.AndroidX.recyclerview
 
   implementation Libraries.AndroidX.lifecycle_extensions
-  implementation Libraries.AndroidX.lifecycle_reactivestreams
   kapt Libraries.AndroidX.lifecycle_compiler
 
   implementation Libraries.AndroidX.paging_runtime
-  implementation Libraries.AndroidX.paging_rxjava
 
   implementation Libraries.Firebase.core
   implementation (Libraries.Firebase.crashlytics) {
@@ -201,7 +199,6 @@ dependencies {
   implementation Libraries.retrofit
   implementation Libraries.retrofit_coroutines
   implementation Libraries.retrofit_moshi
-  implementation Libraries.retrofit_rxjava2
 
   implementation Libraries.rxandroid
   implementation Libraries.rxjava
