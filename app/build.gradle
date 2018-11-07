@@ -160,8 +160,7 @@ dependencies {
   implementation Libraries.android_job
 
   implementation Libraries.anko_commons
-  implementation Libraries.anko_design_coroutines
-  implementation Libraries.anko_sdk15_coroutines
+  implementation Libraries.anko_sdk15_listeners
 
   compileOnly Libraries.assisted_inject
   kapt Libraries.assisted_inject_processor

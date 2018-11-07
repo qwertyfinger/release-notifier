@@ -109,8 +109,7 @@ object Libraries {
 
   val android_job = "com.evernote:android-job:${Versions.android_job}"
   val anko_commons = "org.jetbrains.anko:anko-commons:${Versions.anko}"
-  val anko_design_coroutines = "org.jetbrains.anko:anko-design-coroutines:${Versions.anko}"
-  val anko_sdk15_coroutines = "org.jetbrains.anko:anko-sdk15-listeners:${Versions.anko}"
+  val anko_sdk15_listeners = "org.jetbrains.anko:anko-sdk15-listeners:${Versions.anko}"
   val assisted_inject = "com.squareup.inject:assisted-inject-annotations-dagger2:${Versions.assisted_inject}"
   val assisted_inject_processor = "com.squareup.inject:assisted-inject-processor-dagger2:${Versions.assisted_inject}"
   val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
