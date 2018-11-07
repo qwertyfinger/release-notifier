@@ -12,7 +12,7 @@ config_android: &config_android
     - image: circleci/android:api-28-alpha
   working_directory: ~/release-notifier
   environment:
-    JAVA_TOOL_OPTIONS: "-Xmx1024m"
+    JAVA_TOOL_OPTIONS: "-Xmx1536m"
     GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false"
     TERM: dumb
 
