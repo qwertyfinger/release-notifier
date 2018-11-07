@@ -86,11 +86,7 @@ android {
     targetCompatibility JavaVersion.VERSION_1_8
   }
 
-  testOptions {
-    unitTests {
-      includeAndroidResources = true
-    }
-  }
+  testOptions.unitTests.includeAndroidResources = true
 
   dexOptions {
     // Don't pre-dex on CI
@@ -127,41 +123,51 @@ dependencies {
   testImplementation Libraries.mockito
   testImplementation Libraries.mockito_kotlin
   testImplementation Libraries.robolectric
+  testImplementation Libraries.AndroidX.lifecycle_test
 
-  androidTestImplementation Libraries.AndroidX.Test.core
-  androidTestImplementation Libraries.AndroidX.Test.espresso
-  androidTestImplementation Libraries.AndroidX.Test.junit
-  androidTestImplementation Libraries.AndroidX.Test.runner
-  androidTestImplementation Libraries.AndroidX.Test.rules
+  // Dependencies for running Espresso on local JVM using Robolectric
+  testImplementation Libraries.AndroidX.Test.core
+  testImplementation Libraries.AndroidX.Test.espresso_core
+  testImplementation Libraries.AndroidX.Test.junit
+  testImplementation Libraries.AndroidX.Test.rules
+  testImplementation Libraries.AndroidX.Test.runner
+  testImplementation Libraries.AndroidX.Test.truth
+
   androidTestImplementation Libraries.mockito_android
+  androidTestImplementation Libraries.AndroidX.Test.core
+  androidTestImplementation Libraries.AndroidX.Test.espresso_core
+  androidTestImplementation Libraries.AndroidX.Test.junit
+  androidTestImplementation Libraries.AndroidX.Test.rules
+  androidTestImplementation Libraries.AndroidX.Test.runner
+  androidTestImplementation Libraries.AndroidX.Test.truth
 
   implementation Libraries.AndroidX.appcompat
-  implementation Libraries.AndroidX.browser
   implementation Libraries.AndroidX.constraint_layout
   implementation Libraries.AndroidX.core_ktx
   implementation Libraries.AndroidX.recyclerview
-  implementation Libraries.AndroidX.work
 
   implementation Libraries.AndroidX.lifecycle_extensions
-  implementation Libraries.AndroidX.lifecycle_reactivestreams
   kapt Libraries.AndroidX.lifecycle_compiler
 
   implementation Libraries.AndroidX.paging_runtime
-  implementation Libraries.AndroidX.paging_rxjava
+
+  implementation Libraries.Firebase.core
+  implementation (Libraries.Firebase.crashlytics) {
+    transitive = true
+  }
+  implementation Libraries.Firebase.perf
 
   implementation Libraries.android_job
 
   implementation Libraries.anko_commons
-  implementation Libraries.anko_design
   implementation Libraries.anko_sdk15_listeners
+
+  compileOnly Libraries.assisted_inject
+  kapt Libraries.assisted_inject_processor
 
   implementation Libraries.coroutines
   implementation Libraries.coroutines_android
   implementation Libraries.coroutines_rx
-
-  implementation (Libraries.crashlytics) {
-    transitive = true
-  }
 
   implementation Libraries.dagger
   kapt Libraries.dagger_compiler
@@ -170,11 +176,6 @@ dependencies {
   implementation Libraries.epoxy_databinding
   implementation Libraries.epoxy_paging
   kapt Libraries.epoxy_processor
-
-  implementation Libraries.eventbus
-
-  implementation Libraries.firebase_core
-  implementation Libraries.firebase_perf
 
   implementation Libraries.glide
   kapt Libraries.glide_compiler
@@ -193,13 +194,15 @@ dependencies {
   implementation Libraries.mvrx
   implementation Libraries.okhttp
   implementation Libraries.okio
+
   implementation Libraries.retrofit
-  implementation Libraries.retrofit_rxjava
+  implementation Libraries.retrofit_coroutines
+  implementation Libraries.retrofit_moshi
+
   implementation Libraries.rxandroid
   implementation Libraries.rxjava
   implementation Libraries.rxkotlin
   debugImplementation Libraries.rxlint
-  implementation Libraries.simple_stack
   implementation Libraries.threetenabp
   implementation Libraries.timber
 }
